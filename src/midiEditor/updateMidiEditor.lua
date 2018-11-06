@@ -13,16 +13,11 @@ end
 
 local midiEditorIsOpen = false
 
-local repeatState = nil
-local cursorPosition = nil
 function updateMidiEditor()
 
   if activeMidiEditor() ~= nil and midiEditorIsOpen == false then
     --print("\n\nmidi editor was opened")
     midiEditorIsOpen = true
-
-    repeatState = getRepeatState()
-    cursorPosition = getCursorPosition()
 
     configureMidiEditor()
   end
@@ -30,8 +25,5 @@ function updateMidiEditor()
   if activeMidiEditor() == nil and midiEditorIsOpen == true then
     -- print("\n\nmidi editor was closed")
     midiEditorIsOpen = false
-
-    setRepeatState(repeatState)
-    setCursorPosition(cursorPosition)
   end
 end
