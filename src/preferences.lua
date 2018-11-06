@@ -13,8 +13,6 @@ local function getValue(key, defaultValue)
   return value
 end
 
---
-
 --[[ ]]--
 
 function scaleTonicNote()

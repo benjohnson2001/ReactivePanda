@@ -22,10 +22,9 @@ local function clearAllNoteNames()
 	reaper.MIDIEditor_OnCommand(activeMidiEditor(), commandId)
 end
 
-local function setRomanNumeralNoteNames(trackName, minOctave, maxOctave)
+local function setRomanNumeralNoteNames(track, minOctave, maxOctave)
 
 	local activeProjectIndex = 0
-	local track = getTrack(trackName)
 	local allChannels = -1
 	local noteNames = {"I", "II", "III", "IV", "V", "VI", "VII"}
 	
@@ -47,21 +46,14 @@ local function setRomanNumeralNoteNames(trackName, minOctave, maxOctave)
 	end
 end
 
-local previousScaleTonicNote = nil
-local previousScaleType = nil
-function updateNoteNamesForTracks()
+function updateNoteNames()
 
-	if scaleTonicNote() ~= previousScaleTonicNote or
-		 scaleType() ~= previousScaleType then
+	clearAllNoteNames()
 
-		 clearAllNoteNames()
+	local track = reaper.GetMediaItemTake_Track(activeTake())
+	local _, trackName = reaper.GetTrackName(track, "")
 
-		setRomanNumeralNoteNames("bass", 2, 4)
-		setRomanNumeralNoteNames("tele", 2, 4)
-		setRomanNumeralNoteNames("strat", 2, 4)
-		setRomanNumeralNoteNames("vocals", 2, 4)
-
-		previousScaleTonicNote = scaleTonicNote()
-		previousScaleType = scaleType()
-	end
+	if trackName == "bass" or trackName == "tele" or trackName == "strat" or trackName == "vocals" then
+		setRomanNumeralNoteNames(track, 2, 5)
+	end	
 end
