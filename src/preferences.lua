@@ -7,7 +7,7 @@ local scaleTonicNoteKey = "scaleTonicNote"
 local scaleTypeKey = "scaleType"
 
 --
-local function getValue(key, defaultValue)
+local function getValue(key)
 
   local valueExists, value = reaper.GetProjExtState(activeProjectIndex, sectionName, key)
   return value
@@ -16,11 +16,11 @@ end
 --[[ ]]--
 
 function scaleTonicNote()
-  return tonumber(getValue(scaleTonicNoteKey, defaultScaleTonicNoteValue))
+  return tonumber(getValue(scaleTonicNoteKey))
 end
 
 --
 
 function scaleType()
-  return tonumber(getValue(scaleTypeKey, defaultScaleTypeValue))
+  return tonumber(getValue(scaleTypeKey))
 end

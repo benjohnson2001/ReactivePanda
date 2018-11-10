@@ -1,7 +1,5 @@
 local workingDirectory = reaper.GetResourcePath() .. "/Scripts/ReactivePanda/src"
 require(workingDirectory .. "/midiEditor/configureMidiEditor")
-require(workingDirectory .. "/repeatState")
-require(workingDirectory .. "/cursorPosition")
 
 function activeMidiEditor()
   return reaper.MIDIEditor_GetActive()
@@ -9,6 +7,10 @@ end
 
 function activeTake()
   return reaper.MIDIEditor_GetTake(activeMidiEditor())
+end
+
+function activeTrack()
+  return reaper.GetMediaItemTake_Track(activeTake())
 end
 
 local midiEditorIsOpen = false
