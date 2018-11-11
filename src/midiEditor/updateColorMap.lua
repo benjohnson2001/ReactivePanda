@@ -34,7 +34,6 @@ function updateColorMap()
 	if trackName == "drums" then
 		setColorMap("drums.png")
 	else
-
 		local colorMapFileName = noteNames[scaleTonicNote()] .. scaleNames[scaleType()] .. ".png"
 		setColorMap(colorMapFileName)
 	end

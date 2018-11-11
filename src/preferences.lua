@@ -1,5 +1,3 @@
--- @noindex
-
 local activeProjectIndex = 0
 local sectionName = "com.pandabot.ChordGun"
 

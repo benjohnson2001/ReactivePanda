@@ -2,6 +2,34 @@ local workingDirectory = reaper.GetResourcePath() .. "/Scripts/ReactivePanda/src
 require(workingDirectory .. "/midiEditor/updateNoteNames")
 require(workingDirectory .. "/midiEditor/updateColorMap")
 
+function activeMidiEditor()
+  return reaper.MIDIEditor_GetActive()
+end
+
+function activeTake()
+  return reaper.MIDIEditor_GetTake(activeMidiEditor())
+end
+
+function activeTrack()
+  return reaper.GetMediaItemTake_Track(activeTake())
+end
+
+function activeMediaItem()
+  return reaper.GetMediaItemTake_Item(activeTake())
+end
+
+function activeMediaItemStartPosition()
+  return reaper.GetMediaItemInfo_Value(activeMediaItem(), "D_POSITION")
+end
+
+function setEditCursorPosition(arg)
+
+  local activeProjectIndex = 0
+  local moveView = false
+  local seekPlay = false
+  reaper.SetEditCurPos2(activeProjectIndex, arg, moveView, seekPlay)
+end
+
 function setViewToHideUnusedAndUnnamedNoteRows()
 
   local midiEditorSectionId = 32060
@@ -23,11 +51,6 @@ function zoomToContent()
   reaper.MIDIEditor_OnCommand(activeMidiEditor(), commandId)
 end
 
-function configureMidiEditor()
-
-  updateColorMap()
-  updateNoteNames()
-
-  setViewToHideUnusedAndUnnamedNoteRows()
-  zoomToContent()
+function moveEditCursorToStartOfMediaItem()
+  setEditCursorPosition(activeMediaItemStartPosition())
 end
