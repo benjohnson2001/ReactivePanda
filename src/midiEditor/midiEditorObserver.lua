@@ -18,7 +18,7 @@ local function whenMidiEditorIsClosed()
 end
 
 local midiEditorIsOpen = false
-function listenForMidiEditorEvents()
+function listenForMidiEditorOpeningAndClosing()
 
   if activeMidiEditor() ~= nil and midiEditorIsOpen == false then
     midiEditorIsOpen = true
