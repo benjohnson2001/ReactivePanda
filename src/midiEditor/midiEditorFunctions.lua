@@ -54,3 +54,9 @@ end
 function moveEditCursorToStartOfMediaItem()
   setEditCursorPosition(activeMediaItemStartPosition())
 end
+
+function showOnlyChannelOne()
+  
+  local commandId = 40218
+  reaper.MIDIEditor_OnCommand(activeMidiEditor(), commandId)
+end
