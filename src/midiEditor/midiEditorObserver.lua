@@ -11,8 +11,8 @@ local function whenMidiEditorIsOpened()
   setViewToHideUnusedAndUnnamedNoteRows()
   zoomToContent()
   moveEditCursorToStartOfMediaItem()
-  
-  showOnlyChannelOne()
+
+  --showOnlyChannelOne()
 end
 
 local function whenMidiEditorIsClosed()
