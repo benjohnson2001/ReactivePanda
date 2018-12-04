@@ -34,3 +34,6 @@ function getTrack(trackNameArg)
 
   return nil
 end
+
+function emptyFunctionToPreventAutomaticCreationOfUndoPoint()
+end

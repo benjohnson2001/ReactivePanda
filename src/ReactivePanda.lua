@@ -20,3 +20,4 @@ local function main()
 end
 
 main()
+reaper.defer(emptyFunctionToPreventAutomaticCreationOfUndoPoint)
