@@ -39,9 +39,6 @@ function setViewToHideUnusedAndUnnamedNoteRows()
 
   if viewIsNotSet then
     reaper.MIDIEditor_OnCommand(activeMidiEditor(), commandId)
-  else
-    reaper.MIDIEditor_OnCommand(activeMidiEditor(), commandId)
-    reaper.MIDIEditor_OnCommand(activeMidiEditor(), commandId)
   end
 end
 

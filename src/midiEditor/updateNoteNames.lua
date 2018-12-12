@@ -39,16 +39,12 @@ end
 
 function updateNoteNames()
 
-	--clearAllNoteNames()
+	clearAllNoteNames()
 
 	local track = reaper.GetMediaItemTake_Track(activeTake())
 	local _, trackName = reaper.GetTrackName(track, "")
 
-	if trackName == "bass" or trackName == "tele" or trackName == "strat" or trackName == "vocals" then
-		setRomanNumeralNoteNames(track, 2, 5)
-	end	
-
-	if trackName == "drums" then
-		--setRomanNumeralNoteNamesForDrums(track)
+	if trackName ~= "drums" then
+		setRomanNumeralNoteNames(track, 1, 5)
 	end
 end

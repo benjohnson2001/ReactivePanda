@@ -9,7 +9,6 @@ clearConsoleWindow()
 
 local function main()
 
-	setViewToHideUnusedAndUnnamedNoteRows()
   zoomToContent()
 
 	listenForMidiEditorOpeningAndClosing()
