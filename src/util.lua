@@ -10,10 +10,17 @@ end
 
 function shiftTable(arg, numberOfPlaces)
 
-	for i = 1, numberOfPlaces do
-		table.insert(arg, arg[1])
-		table.remove(arg, 1)
-	end
+  local outputTable = {}
+
+  for i = numberOfPlaces, 12 do
+    table.insert(outputTable, arg[i])
+  end
+
+  for i = 1, numberOfPlaces-1 do
+    table.insert(outputTable, arg[i])
+  end
+
+	return outputTable
 end
 
 

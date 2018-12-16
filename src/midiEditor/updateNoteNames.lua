@@ -17,9 +17,19 @@ end
 local function setRomanNumeralNoteNames(track, minOctave, maxOctave)
 
 	local noteNames = {"I", "II", "III", "IV", "V", "VI", "VII"}
-	
-	local scalePattern = getScalePattern(scaleTonicNote(), scales[scaleType()])
-	shiftTable(scalePattern, scaleTonicNote()-1)
+
+	local unshiftedScalePattern = getScalePattern(scaleTonicNote(), scales[scaleType()])
+	local scalePattern = shiftTable(unshiftedScalePattern, scaleTonicNote())
+
+	local myOutputString = ""
+	for i = 1, 12 do
+
+		if scalePattern[i] then
+			myOutputString = myOutputString .. "1"
+		else
+			myOutputString = myOutputString .. "0"
+		end
+	end
 
 	for octave = minOctave, maxOctave do
 
@@ -28,8 +38,10 @@ local function setRomanNumeralNoteNames(track, minOctave, maxOctave)
 
 			if scalePattern[i] then
 
-				local pitch = i-1 + (octave+1)*12 + scaleTonicNote()-1
+				if noteIndex == 8 then
+				end
 
+				local pitch = i-1 + (octave+1)*12 + scaleTonicNote()-1
 				setNoteName(track, pitch, noteNames[noteIndex])
 				noteIndex = noteIndex + 1
 			end

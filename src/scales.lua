@@ -17,9 +17,9 @@ scales = {
 function getScalePattern(scaleTonicNote, scale)
 
   local scalePatternString = scale['pattern']
-  local scalePattern = {false,false,false,false,false,false,false,false,false,false,false}
+  local scalePattern = {false,false,false,false,false,false,false,false,false,false,false,false}
 
-  for i = 0, #scalePatternString do
+  for i = 0, #scalePatternString-1 do
     local note = getNotesIndex(scaleTonicNote+i)
     if scalePatternString:sub(i+1, i+1) == '1' then
       scalePattern[note] = true
