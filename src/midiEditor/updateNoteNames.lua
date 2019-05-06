@@ -1,5 +1,4 @@
 local workingDirectory = reaper.GetResourcePath() .. "/Scripts/ReactivePanda/src"
-local workingDirectory = reaper.GetResourcePath() .. "/Scripts/ReactivePanda/src"
 require(workingDirectory .. "/util")
 
 local function clearAllNoteNames()
@@ -138,6 +137,32 @@ local function setDrumNoteNamesForMXRDrumComputer(track)
 	setNoteName(track, 11, "cowbell")
 end
 
+local function setDrumNoteNamesForDrums1(track)
+
+	setNoteName(track, 0, "kick1")
+	setNoteName(track, 1, "kick2")
+	setNoteName(track, 2, "kick3")
+	setNoteName(track, 3, "snare1")
+	setNoteName(track, 4, "snare2")
+	setNoteName(track, 5, "snare3")
+	setNoteName(track, 6, "closed1")
+	setNoteName(track, 7, "closed2")
+	setNoteName(track, 8, "closed3")
+	setNoteName(track, 9, "open1")
+	setNoteName(track, 10, "open2")
+	setNoteName(track, 11, "open3")
+	setNoteName(track, 12, "ride1")
+	setNoteName(track, 13, "ride2")
+	setNoteName(track, 14, "ride3")
+	setNoteName(track, 15, "ride4")
+	setNoteName(track, 16, "crash1")
+	setNoteName(track, 17, "crash2")
+	setNoteName(track, 18, "tom1")
+	setNoteName(track, 19, "tom2")
+	setNoteName(track, 20, "tom3")
+	setNoteName(track, 21, "tom4")
+end
+
 function updateNoteNames()
 
 	clearAllNoteNames()
@@ -147,11 +172,14 @@ function updateNoteNames()
 
 	if trackName == "drumsGM" then
 		setDrumNoteNamesForGeneralMidi(track)
-	elseif trackName == "drums" then
---		setDrumNoteNamesForSimpleDrums(track)
+	elseif trackName == "mxr drums" then
 		setDrumNoteNamesForMXRDrumComputer(track)
+	elseif trackName == "drums" or trackName == "simple drums" then
+		setDrumNoteNamesForSimpleDrums(track)
+	elseif trackName == "drums1" then
+		setDrumNoteNamesForDrums1(track)
 	elseif trackName == "bass" then
-		setRomanNumeralNoteNames(track, 0, 4)
+		setRomanNumeralNoteNames(track, 1, 5)
 	elseif trackName ~= "drums" then
 		setRomanNumeralNoteNames(track, 1, 5)
 	end
