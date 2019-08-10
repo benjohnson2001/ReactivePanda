@@ -23,7 +23,6 @@ function shiftTable(arg, numberOfPlaces)
 	return outputTable
 end
 
-
 function getTrack(trackNameArg)
 
   local activeProjectIndex = 0

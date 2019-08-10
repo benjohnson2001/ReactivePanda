@@ -22,6 +22,11 @@ function activeMediaItemStartPosition()
   return reaper.GetMediaItemInfo_Value(activeMediaItem(), "D_POSITION")
 end
 
+function getTrackName()
+  local _, trackName = reaper.GetTrackName(activeTrack(), "")
+  return trackName
+end
+
 function setEditCursorPosition(arg)
 
   local activeProjectIndex = 0

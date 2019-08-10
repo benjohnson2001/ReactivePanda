@@ -13,27 +13,24 @@ local function whenMidiEditorIsOpened()
     updateNoteNames()
 
     setViewToHideUnusedAndUnnamedNoteRows()
-    zoomToContent()
+    
     moveEditCursorToStartOfMediaItem()
 
     --showOnlyChannelOne()
+
+    local trackName = getTrackName()
+    if trackName ~= "kick" and trackName ~= "snare" then
+      zoomToContent()
+    end
+
     hideTrackList()
     hideMediaLane()
 
   endUndoBlock("ReactivePanda: midi editor opened")
 end
 
-local function resetDrumPatternIndex()
-
-  local activeProjectIndex = 0
-  local sectionName = "com.pandabot.DrumPatterns"
-  local key = "drumPatternIndex"
-  reaper.SetProjExtState(activeProjectIndex, sectionName, key, 0)
-end
-
 local function whenMidiEditorIsClosed()
 
-  resetDrumPatternIndex()
 end
 
 local midiEditorIsOpen = false

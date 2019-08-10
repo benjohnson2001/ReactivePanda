@@ -14,11 +14,25 @@ end
 --[[ ]]--
 
 function scaleTonicNote()
-  return tonumber(getValue(scaleTonicNoteKey))
+
+	local scaleTonicNoteValue = tonumber(getValue(scaleTonicNoteKey))
+
+	if scaleTonicNoteValue == nil then
+		return 1
+	end
+
+  return scaleTonicNoteValue
 end
 
 --
 
 function scaleType()
-  return tonumber(getValue(scaleTypeKey))
+
+	local scaleTypeValue = tonumber(getValue(scaleTypeKey))
+
+	if scaleTypeValue == nil then
+		return 1
+	end
+
+  return scaleTypeValue
 end

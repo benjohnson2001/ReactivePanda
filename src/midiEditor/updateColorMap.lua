@@ -31,7 +31,9 @@ function updateColorMap()
 
 	local _, trackName = reaper.GetTrackName(activeTrack(), "")
 
-	if trackName == "drums" or trackName == "mxr drums" or trackName == "simple drums" or trackName == "drums1" then
+	if trackName == "drums"
+	or trackName == "simple drums"
+	or trackName == "realidrums" then
 		setColorMap("drums.png")
 	else
 		local colorMapFileName = noteNames[scaleTonicNote()] .. scaleNames[scaleType()] .. ".png"

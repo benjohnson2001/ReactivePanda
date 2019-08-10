@@ -9,8 +9,6 @@ clearConsoleWindow()
 
 local function main()
 
-  zoomToContent()
-
 	listenForMidiEditorOpeningAndClosing()
 
 	if not quitProgram then
