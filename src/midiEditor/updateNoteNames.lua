@@ -49,6 +49,20 @@ local function setRomanNumeralNoteNames(track, minOctave, maxOctave)
 	end
 end
 
+local function setLeadArticulationNoteNames(track)
+
+	setNoteName(track, 24, "sustain")
+	setNoteName(track, 25, "mute")
+	setNoteName(track, 26, "power chord sustain")
+	setNoteName(track, 27, "power chord mute")
+	setNoteName(track, 28, "staccato")
+	setNoteName(track, 29, "staccato snap")
+	setNoteName(track, 30, "choke")
+	setNoteName(track, 31, "tapping")
+	setNoteName(track, 32, "harmonics")
+	setNoteName(track, 33, "tremelo")
+end
+
 local function setDrumNoteNamesForGeneralMidi(track)
 
 	setNoteName(track, 35, "acoustic bass drum")
@@ -213,6 +227,22 @@ local function setDrumNoteNamesForStevenSlateDrums(track)
 	]]--
 end
 
+local function setDrumNoteNamesForMXRDrumComputer(track)
+
+	setNoteName(track, 0, "kick")
+	setNoteName(track, 1, "snare")
+	setNoteName(track, 2, "rimshot")
+	setNoteName(track, 3, "clap")
+	setNoteName(track, 4, "hihat_closed")
+	setNoteName(track, 5, "hihat_open")
+	setNoteName(track, 6, "crash")
+	setNoteName(track, 7, "tom1")
+	setNoteName(track, 8, "tom2")
+	setNoteName(track, 9, "tom3")
+	setNoteName(track, 10, "woodblock")
+	setNoteName(track, 11, "cowbell")
+end
+
 local function setDrumNoteNamesForRealidrums(track)
 
 	setNoteName(track, 21, "kick")
@@ -347,12 +377,21 @@ function updateNoteNames()
 		setDrumNoteNamesForGeneralMidi(track)
 	elseif trackName == "drums" or trackName == "simple drums" then
 		setDrumNoteNamesForSimpleDrums(track)
+	elseif trackName == "snare" then
+		setDrumNoteNamesForSimpleDrums(track)
+	elseif trackName == "hihat" then
+		setDrumNoteNamesForSimpleDrums(track)
+	elseif trackName == "mxrdrums" then
+		setDrumNoteNamesForMXRDrumComputer(track)
 	elseif trackName == "realidrums" then
 		setDrumNoteNamesForRealidrums(track)
-	elseif trackName == "drumsFinal" then
+	elseif trackName == "ssd5" then
 		setDrumNoteNamesForStevenSlateDrums(track)
 	elseif trackName == "bass" then
 		setRomanNumeralNoteNames(track, 1, 5)
+	elseif trackName == "lead" then
+		setRomanNumeralNoteNames(track, 1, 5)
+		setLeadArticulationNoteNames(track)
 	elseif trackName ~= "drums" then
 		setRomanNumeralNoteNames(track, 1, 5)
 	end

@@ -47,6 +47,18 @@ function setViewToHideUnusedAndUnnamedNoteRows()
   end
 end
 
+function setViewToShowAllNoteRows()
+
+  local midiEditorSectionId = 32060
+  local commandId = 40452
+  
+  local viewIsNotSet = reaper.GetToggleCommandStateEx(midiEditorSectionId, commandId) ~= 1
+
+  if viewIsNotSet then
+    reaper.MIDIEditor_OnCommand(activeMidiEditor(), commandId)
+  end
+end
+
 function zoomToContent()
 
   local commandId = 40466
