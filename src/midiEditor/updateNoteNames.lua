@@ -392,6 +392,8 @@ function updateNoteNames()
 	elseif trackName == "lead" then
 		setRomanNumeralNoteNames(track, 1, 5)
 		setLeadArticulationNoteNames(track)
+--	elseif trackName == "vocals" then
+--		setRomanNumeralNoteNames(track, 2, 3)
 	elseif trackName ~= "drums" then
 		setRomanNumeralNoteNames(track, 1, 5)
 	end
