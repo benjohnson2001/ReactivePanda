@@ -363,7 +363,47 @@ local function setDrumNoteNamesForRealidrumsFull(track)
 
 	setNoteName(track, 107, "groove -")
 	setNoteName(track, 108, "groove +")
+end
 
+local function setNoteNamesForElectri6ity(track)
+
+	setNoteName(track, 21, "release note")
+	setNoteName(track, 22, "tremelo")
+	setNoteName(track, 23, "sustain")
+	setNoteName(track, 24, "muted->sustain")
+	setNoteName(track, 25, "trill 1 fret")
+	setNoteName(track, 26, "sustain->harmonics")
+	setNoteName(track, 27, "trill 2 frets")
+	setNoteName(track, 28, "hammer-on / pull-off")
+	setNoteName(track, 29, "fx")
+	setNoteName(track, 30, "poly mode")
+	setNoteName(track, 31, "ghost mode")
+	setNoteName(track, 32, "solo mode")
+	setNoteName(track, 33, "slides")
+	setNoteName(track, 34, "legato mode")
+	setNoteName(track, 35, "stay on current string")
+
+	setNoteName(track, 87, "flageoletts")
+	setNoteName(track, 88, "palm mute")
+	setNoteName(track, 89, "sustain downstroke")
+	setNoteName(track, 90, "sustain upstroke")
+	setNoteName(track, 91, "half-mute downstroke")
+	setNoteName(track, 92, "half-mute upstroke")
+	setNoteName(track, 93, "mute downstroke")
+	setNoteName(track, 94, "mute upstroke")
+	setNoteName(track, 96, "clean ghost downstroke")
+	setNoteName(track, 97, "clean ghost upstroke")
+	setNoteName(track, 98, "dirty ghost downstroke")
+	setNoteName(track, 99, "dirty ghost upstroke")
+	setNoteName(track, 100, "string 6")
+	setNoteName(track, 101, "string 5")
+	setNoteName(track, 102, "hand mute")
+	setNoteName(track, 103, "string 4")
+	setNoteName(track, 104, "slide down")
+	setNoteName(track, 105, "string 3")
+	setNoteName(track, 106, "slide up")
+	setNoteName(track, 107, "string 2")
+	setNoteName(track, 108, "string 1")
 end
 
 function updateNoteNames()
@@ -381,7 +421,7 @@ function updateNoteNames()
 		setDrumNoteNamesForSimpleDrums(track)
 	elseif trackName == "hihat" then
 		setDrumNoteNamesForSimpleDrums(track)
-	elseif trackName == "mxrdrums" then
+	elseif trackName == "mxr drums" then
 		setDrumNoteNamesForMXRDrumComputer(track)
 	elseif trackName == "realidrums" then
 		setDrumNoteNamesForRealidrums(track)
@@ -394,6 +434,9 @@ function updateNoteNames()
 		setLeadArticulationNoteNames(track)
 --	elseif trackName == "vocals" then
 --		setRomanNumeralNoteNames(track, 2, 3)
+	elseif string.match(trackName, "electri6ity") then
+		setRomanNumeralNoteNames(track, 1, 7)
+		setNoteNamesForElectri6ity(track)
 	elseif trackName ~= "drums" then
 		setRomanNumeralNoteNames(track, 1, 5)
 	end

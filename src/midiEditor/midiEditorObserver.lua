@@ -12,14 +12,17 @@ local function whenMidiEditorIsOpened()
     updateColorMap()
     updateNoteNames()
 
---    setViewToHideUnusedAndUnnamedNoteRows()
-    setViewToShowAllNoteRows()
+    local trackName = getTrackName()
+    if trackName == "vocals" then
+      setViewToShowAllNoteRows()
+    else
+      setViewToHideUnusedAndUnnamedNoteRows()
+    end
 
     moveEditCursorToStartOfMediaItem()
 
     --showOnlyChannelOne()
-
-    local trackName = getTrackName()
+    
 --    if trackName ~= "kick" and trackName ~= "snare" then
       zoomToContent()
 --    end
