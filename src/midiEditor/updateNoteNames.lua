@@ -49,7 +49,7 @@ local function setRomanNumeralNoteNames(track, minOctave, maxOctave)
 	end
 end
 
-local function setLeadArticulationNoteNames(track)
+local function setShreddageArticulationNoteNames(track)
 
 	setNoteName(track, 24, "sustain")
 	setNoteName(track, 25, "mute")
@@ -365,6 +365,18 @@ local function setDrumNoteNamesForRealidrumsFull(track)
 	setNoteName(track, 108, "groove +")
 end
 
+
+local function setNoteNamesForTrilian(track)
+
+	setNoteName(track, 28, "gliss up")
+	setNoteName(track, 29, "slide down")
+	setNoteName(track, 30, "slide up")
+	setNoteName(track, 31, "slide updown")
+	setNoteName(track, 32, "harmonics")
+	setNoteName(track, 33, "staccato")
+	setNoteName(track, 34, "x-notes")
+end
+
 local function setNoteNamesForElectri6ity(track)
 
 	setNoteName(track, 21, "release note")
@@ -391,10 +403,10 @@ local function setNoteNamesForElectri6ity(track)
 	setNoteName(track, 92, "half-mute upstroke")
 	setNoteName(track, 93, "mute downstroke")
 	setNoteName(track, 94, "mute upstroke")
-	setNoteName(track, 96, "clean ghost downstroke")
-	setNoteName(track, 97, "clean ghost upstroke")
-	setNoteName(track, 98, "dirty ghost downstroke")
-	setNoteName(track, 99, "dirty ghost upstroke")
+	setNoteName(track, 96, "dead mute downstroke")
+	setNoteName(track, 97, "dead mute upstroke")
+	setNoteName(track, 98, "chucka downstroke")
+	setNoteName(track, 99, "chucka upstroke")
 	setNoteName(track, 100, "string 6")
 	setNoteName(track, 101, "string 5")
 	setNoteName(track, 102, "hand mute")
@@ -417,21 +429,15 @@ function updateNoteNames()
 		setDrumNoteNamesForGeneralMidi(track)
 	elseif trackName == "drums" or trackName == "simple drums" then
 		setDrumNoteNamesForSimpleDrums(track)
-	elseif trackName == "snare" then
-		setDrumNoteNamesForSimpleDrums(track)
-	elseif trackName == "hihat" then
-		setDrumNoteNamesForSimpleDrums(track)
 	elseif trackName == "mxr drums" then
 		setDrumNoteNamesForMXRDrumComputer(track)
-	elseif trackName == "realidrums" then
+	elseif string.match(trackName, "realidrums") then
 		setDrumNoteNamesForRealidrums(track)
-	elseif trackName == "ssd5" then
+	elseif string.match(trackName, "ssd5") then
 		setDrumNoteNamesForStevenSlateDrums(track)
-	elseif trackName == "bass" then
-		setRomanNumeralNoteNames(track, 1, 5)
-	elseif trackName == "lead" then
-		setRomanNumeralNoteNames(track, 1, 5)
-		setLeadArticulationNoteNames(track)
+	elseif string.match(trackName, "trilian") then
+		setRomanNumeralNoteNames(track, 0, 5)
+		setNoteNamesForTrilian(track)
 --	elseif trackName == "vocals" then
 --		setRomanNumeralNoteNames(track, 2, 3)
 	elseif string.match(trackName, "electri6ity") then

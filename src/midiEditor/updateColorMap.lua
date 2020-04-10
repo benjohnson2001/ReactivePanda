@@ -5,10 +5,18 @@ local function setColorMap(fileName)
 	local _, trackStateChunk = reaper.GetTrackStateChunk(activeTrack(), stringArg, isUndo)
 
 	local colorMapDirectory = "/Users/panda/Library/Application Support/REAPER/Scripts/ReactivePanda/colormaps"
-	local newColorMapCommand = "COLORMAP \"" .. colorMapDirectory .. "/" .. fileName .. "\""
 
-	local newTrackStateChunk, numberOfSubstitutions = string.gsub(trackStateChunk, "COLORMAP \"(.-)\"", newColorMapCommand)
-	reaper.SetTrackStateChunk(activeTrack(), newTrackStateChunk, isUndo)
+	if string.match(trackStateChunk, "MIDICOLORMAPFN") then
+
+		local newColorMapCommand = "MIDICOLORMAPFN \"" .. colorMapDirectory .. "/" .. fileName .. "\""
+		local newTrackStateChunk, numberOfSubstitutions = string.gsub(trackStateChunk, "MIDICOLORMAPFN \"(.-)\"", newColorMapCommand, 1)
+		reaper.SetTrackStateChunk(activeTrack(), newTrackStateChunk, isUndo)
+	else
+
+		local newColorMapCommand = "MIDICOLORMAPFN \"" .. colorMapDirectory .. "/" .. fileName .. "\"\nFX"
+		local newTrackStateChunk, numberOfSubstitutions = string.gsub(trackStateChunk, "FX", newColorMapCommand, 1)
+		reaper.SetTrackStateChunk(activeTrack(), newTrackStateChunk, isUndo)
+	end
 end
 
 noteNames = { 'c', 'cSharp', 'd', 'dSharp', 'e', 'f', 'fSharp', 'g', 'gSharp', 'a', 'aSharp', 'b' };
@@ -31,9 +39,8 @@ function updateColorMap()
 
 	local _, trackName = reaper.GetTrackName(activeTrack(), "")
 
-	if trackName == "drums"
-	or trackName == "simple drums"
-	or trackName == "realidrums" then
+	if string.match(trackName, "drums")
+	or string.match(trackName, "ssd5") then
 		setColorMap("drums.png")
 	else
 		local colorMapFileName = noteNames[scaleTonicNote()] .. scaleNames[scaleType()] .. ".png"
